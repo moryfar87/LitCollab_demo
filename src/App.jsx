@@ -111,7 +111,7 @@ function App() {
         <CssBaseline />
         <Router>
           <AuthProvider>
-            <AIProvider>
+
               <Layout>
                 <Routes>
                   <Route path="/" element={<Home />} />
@@ -126,7 +126,7 @@ function App() {
                   <Route path="/story/:id/edit" element={<EditStory />} />
                 </Routes>
               </Layout>
-            </AIProvider>
+
           </AuthProvider>
         </Router>
       </ThemeProvider>
