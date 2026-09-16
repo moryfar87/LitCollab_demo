@@ -12,7 +12,6 @@ import Profile from './components/pages/Profile';
 import Settings from './components/pages/Settings';
 import StoryDetail from './components/pages/StoryDetail.jsx';
 import Story from './components/pages/Story';
-import { AIProvider } from './context/AIContext';
 import { AuthProvider } from './context/AuthContext';
 
 const theme = createTheme({
