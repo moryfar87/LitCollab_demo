@@ -1,0 +1,307 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0a0a0a;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5B21B6;
+}
+
+/* Header styles */
+.header {
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  text-decoration: none;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  color: #7C3AED;
+}
+
+.logo svg {
+  transition: transform 0.3s ease;
+}
+
+.logo:hover svg {
+  transform: scale(1.1);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #7C3AED;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #A78BFA;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Card hover effects */
+.MuiCard-root {
+  position: relative;
+  overflow: hidden;
+}
+
+.MuiCard-root::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(124, 58, 237, 0.1),
+          transparent
+  );
+  transition: 0.5s;
+}
+
+.MuiCard-root:hover::before {
+  left: 100%;
+}
+
+/* Button animations */
+.MuiButton-root {
+  position: relative;
+  overflow: hidden;
+}
+
+.MuiButton-root::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.MuiButton-root:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+
+/* Form fields animation */
+.MuiTextField-root .MuiOutlinedInput-root {
+  transition: transform 0.2s ease;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root:focus-within {
+  transform: scale(1.02);
+}
+
+/* Page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .header nav {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .nav-links {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .auth-buttons {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Loading animations */
+.loading-skeleton {
+  background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.05) 25%,
+          rgba(124, 58, 237, 0.15) 50%,
+          rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.story-tree-container {
+  width: 100%;
+  height: 700px;
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 8px;
+  padding: 20px;
+  background: #1a1a1a;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.story-tree-container svg {
+  background: transparent;
+}
+
+.node circle {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.node:hover circle {
+  fill: #7C3AED;
+}
+
+.node text {
+  cursor: pointer;
+}
+
+.link {
+  transition: all 0.3s ease;
+}
+
+.link:hover {
+  stroke: #7C3AED;
+  stroke-width: 3px;
+}
