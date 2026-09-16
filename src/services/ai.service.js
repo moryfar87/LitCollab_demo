@@ -1,3 +1,4 @@
+/*
 import { env } from '../../vite.env.js';
 
 const API_URL = "https://api-inference.huggingface.co/models/gpt2";
@@ -101,7 +102,7 @@ export const generateStoryIdeas = async (prompt) => {
     const ideas = response[0].generated_text
       .split('\n')
       .filter(idea => idea.trim())
-      .map(idea => idea.replace(/^\d+\.\s*/, ''));
+      .map(idea => idea.replace(/^\d+\.\s*!/, ''));
 
     return ideas;
   } catch (error) {
@@ -142,11 +143,11 @@ export const analyzeStyle = async (text) => {
     const suggestions = response[0].generated_text
       .split('\n')
       .filter(suggestion => suggestion.trim())
-      .map(suggestion => suggestion.replace(/^\d+\.\s*/, ''));
+      .map(suggestion => suggestion.replace(/^\d+\.\s*!/, ''));
 
     return suggestions;
   } catch (error) {
     console.error('Error analyzing style:', error);
     throw error;
   }
-}; 
+}; */
