@@ -1,3 +1,4 @@
+/*
 import { createContext, useContext, useState } from 'react';
 import { generateStoryIdeas, continueStory, analyzeStyle } from '../services/ai.service';
 
@@ -76,4 +77,4 @@ export const useAI = () => {
     throw new Error('useAI must be used within an AIProvider');
   }
   return context;
-}; 
+}; */
