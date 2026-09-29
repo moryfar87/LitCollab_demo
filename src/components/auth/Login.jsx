@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import {useNavigate, Link, useLocation} from 'react-router-dom';
 import {TextField, Button, Paper, Typography, Box, Divider, CircularProgress, Alert} from '@mui/material';
+import { reachGoal } from '../../utils/metrika'; // <--- Импорт Метрики
 
 const Login = () => {
     const [credentials, setCredentials] = useState({email: '', password: ''});
@@ -114,6 +115,9 @@ const Login = () => {
             localStorage.setItem('user', JSON.stringify(mockUser));
 
             window.dispatchEvent(new Event('storage'));
+
+            // Отправка цели "Успешный вход" в Метрику
+            reachGoal('LOGIN_SUCCESS');
 
             navigate('/profile');
 
@@ -358,6 +362,7 @@ const Login = () => {
                         to="/register"
                         fullWidth
                         variant="outlined"
+                        onClick={() => reachGoal('GO_TO_REGISTER')} // <-- Отслеживание клика
                         sx={{
                             borderColor: 'rgba(255, 255, 255, 0.2)',
                             color: '#ffffff',

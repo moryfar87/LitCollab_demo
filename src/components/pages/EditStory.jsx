@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Typography, TextField, Button, Box, Paper, Alert, CircularProgress } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { api } from '../../services/api';
+import { reachGoal } from '../../utils/metrika'; // <--- Импорт Метрики
 
 export default function EditStory() {
     const { id } = useParams();
@@ -45,6 +46,10 @@ export default function EditStory() {
             setIsSaving(true);
             setError('');
             await api.updateStory(id, { title, description, content });
+
+            // Отправка цели "История отредактирована" в Метрику
+            reachGoal('STORY_EDIT_SUCCESS', { storyId: id });
+
             navigate(`/story/${id}`);
         } catch (err) {
             console.error('Error updating story:', err);

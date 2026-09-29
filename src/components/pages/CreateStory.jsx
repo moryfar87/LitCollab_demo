@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Container, Typography, TextField, Button, Box, Paper, Alert, Chip } from '@mui/material';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import { api } from '../../services/api';
+import { reachGoal } from '../../utils/metrika'; // <--- Импорт Метрики
 
 export default function CreateStory() {
     const navigate = useNavigate();
@@ -31,6 +32,13 @@ export default function CreateStory() {
                 content,
                 parentId
             });
+
+            // Отправка цели в зависимости от того, новое это произведение или продолжение
+            if (parentId) {
+                reachGoal('STORY_CONTINUATION_SUCCESS', { parentId });
+            } else {
+                reachGoal('STORY_CREATE_SUCCESS');
+            }
 
             if (newStory && newStory.id) {
                 navigate(`/story/${newStory.id}`);

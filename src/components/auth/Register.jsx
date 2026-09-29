@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { TextField, Button, Paper, Typography, Box, Divider, CircularProgress } from '@mui/material';
 import { authService } from '../../services/authService';
+import { reachGoal } from '../../utils/metrika'; // <--- Импорт Метрики
 
 const ErrorMessage = ({ message, touched }) => (
     <div
@@ -154,6 +155,9 @@ const Register = () => {
                 sessionStorage.clear();
 
                 await authService.register(userData.email, userData.password, userData.username);
+
+                // Отправка цели "Успешная регистрация" в Метрику
+                reachGoal('REGISTER_SUCCESS');
 
                 setErrors(prev => ({
                     ...prev,
@@ -461,6 +465,7 @@ const Register = () => {
                         to="/login"
                         fullWidth
                         variant="outlined"
+                        onClick={() => reachGoal('GO_TO_LOGIN')} // <-- Отслеживание клика перехода к авторизации
                         sx={{
                             borderColor: 'rgba(255, 255, 255, 0.2)',
                             color: '#ffffff',
