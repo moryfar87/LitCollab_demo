@@ -5,7 +5,7 @@ export const authService = {
       localStorage.clear();
       sessionStorage.clear();
 
-      // Имитация задержки сети 500мс
+      // Заглушка: имитируем ответ сервера за 500мс
       await new Promise((resolve) => setTimeout(resolve, 500));
 
       const newUser = {
@@ -14,8 +14,10 @@ export const authService = {
         name: username
       };
 
-      // Сохраняем временного пользователя для работы приложения
+      // Сохраняем временного пользователя для работы фронтенда
       localStorage.setItem('user', JSON.stringify(newUser));
+      localStorage.setItem('token', 'mock-demo-token');
+      localStorage.setItem('access_token', 'mock-demo-token');
 
       return { message: 'Успешная регистрация', user: newUser };
     } catch (error) {
@@ -32,11 +34,11 @@ export const authService = {
       await new Promise((resolve) => setTimeout(resolve, 500));
 
       const mockUser = {
-        id: 1,
+        id: Date.now(),
         email: email,
-        name: email.split('@')[0]
+        name: email ? email.split('@')[0] : 'Пользователь'
       };
-      const mockToken = 'demo-fake-jwt-token';
+      const mockToken = 'mock-demo-token';
 
       localStorage.setItem('access_token', mockToken);
       localStorage.setItem('token', mockToken);
